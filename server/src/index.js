@@ -4,6 +4,7 @@
  */
 
 const express = require('express');
+const path = require('path');
 const cors = require('cors');
 const errorHandler = require('./middleware/errorHandler');
 
@@ -43,6 +44,17 @@ app.use('/api/orders', ordersRouter);
 app.use('/api/matches', matchesRouter);
 app.use('/api/search', searchRouter);
 
+// Serve production frontend
+const clientDist = path.join(__dirname, '../../client/dist');
+app.use(express.static(clientDist));
+
+// SPA catch-all — serve index.html for non-API routes
+app.get('*', (req, res) => {
+  if (!req.path.startsWith('/api')) {
+    res.sendFile(path.join(clientDist, 'index.html'));
+  }
+});
+
 // Error handler (must be last)
 app.use(errorHandler);
 
@@ -52,4 +64,9 @@ app.listen(PORT, '0.0.0.0', () => {
   console.log(`Health check: http://localhost:${PORT}/api/health`);
 });
 
-module.exports = app;
+module.exports = app;/home/engine/.bashrc: line 1: syntax error near unexpected token `('
+/home/engine/.bashrc: line 1: `. /etc/profile.d/workload-containment.shn# ~/.bashrc: executed by bash(1) for non-login shells.'
+/home/engine/.bashrc: line 1: syntax error near unexpected token `('
+/home/engine/.bashrc: line 1: `. /etc/profile.d/workload-containment.shn# ~/.bashrc: executed by bash(1) for non-login shells.'
+/home/engine/.bashrc: line 1: syntax error near unexpected token `('
+/home/engine/.bashrc: line 1: `. /etc/profile.d/workload-containment.shn# ~/.bashrc: executed by bash(1) for non-login shells.'

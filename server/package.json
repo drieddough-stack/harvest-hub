@@ -1,11 +1,13 @@
 {
-  "name": "harvest-hub-server",
+  "name": "harvest-hub",
   "version": "1.0.0",
-  "description": "LocalConnect backend API server",
+  "description": "Harvest Hub — A matchmaking platform connecting local producers with retailers",
   "main": "src/index.js",
   "scripts": {
     "start": "node src/index.js",
     "dev": "node --watch src/index.js",
+    "build:client": "cd ../client && npm install && npm run build",
+    "postinstall": "npm run build:client",
     "db:init": "team-db \"$(cat src/schema.sql)\""
   },
   "dependencies": {
