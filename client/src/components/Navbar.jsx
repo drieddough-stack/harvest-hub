@@ -4,7 +4,7 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="navbar-brand">
-        <Link to="/">LocalConnect</Link>
+        <Link to="/">Harvest Hub</Link>
       </div>
       <ul className="navbar-links">
         <li><Link to="/listings">Browse Listings</Link></li>

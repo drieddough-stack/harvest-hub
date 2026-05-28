@@ -1,4 +1,4 @@
-# LocalConnect
+# Harvest Hub
 
 A matchmaking platform connecting local producers (farms, bakeries, artisans) with retailers (grocery stores, markets, cafes).
 

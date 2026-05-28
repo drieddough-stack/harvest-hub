@@ -1,10 +1,10 @@
 #!/bin/bash
-# LocalConnect — One-command dev startup
+# Harvest Hub — One-command dev startup
 # Starts both server and client in the background
 
 set -e
 
-echo "=== LocalConnect Dev Startup ==="
+echo "=== Harvest Hub Dev Startup ==="
 
 # Install dependencies if needed
 if [ ! -d "server/node_modules" ]; then
@@ -33,7 +33,7 @@ cd client && nohup npm run dev > /tmp/localconnect-client.log 2>&1 &
 CLIENT_PID=$!
 cd ..
 
-echo "=== LocalConnect Running ==="
+echo "=== Harvest Hub Running ==="
 echo "  API Server:  http://localhost:3001"
 echo "  API Health:  http://localhost:3001/api/health"
 echo "  Frontend:    http://localhost:5173"

@@ -29,7 +29,7 @@ const Home = () => {
     <div className="page home-page">
       <section className="hero">
         <h1>Connect with Local Producers</h1>
-        <p>LocalConnect bridges the gap between regional farms, artisans, and the retailers who want to stock their goods.</p>
+        <p>Harvest Hub bridges the gap between regional farms, artisans, and the retailers who want to stock their goods.</p>
         <div className="cta-buttons">
           <Link to="/listings" className="btn btn-primary">Browse Listings</Link>
           <Link to="/producers" className="btn btn-secondary">Our Producers</Link>

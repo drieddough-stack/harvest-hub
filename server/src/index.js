@@ -1,5 +1,5 @@
 /**
- * LocalConnect — Backend API Server
+ * Harvest Hub — Backend API Server
  * Express.js REST API on port 3001
  */
 
@@ -48,7 +48,7 @@ app.use(errorHandler);
 
 // Start server
 app.listen(PORT, '0.0.0.0', () => {
-  console.log(`LocalConnect API server running on http://0.0.0.0:${PORT}`);
+  console.log(`Harvest Hub API server running on http://0.0.0.0:${PORT}`);
   console.log(`Health check: http://localhost:${PORT}/api/health`);
 });
 

@@ -1,8 +1,8 @@
-# LocalConnect — System Architecture
+# Harvest Hub — System Architecture
 
 ## Overview
 
-LocalConnect is a matchmaking platform connecting local producers (farms, bakeries, artisans) with retailers (grocery stores, markets, cafes). The platform facilitates discovery, ordering, and logistics coordination between producers and retailers.
+Harvest Hub is a matchmaking platform connecting local producers (farms, bakeries, artisans) with retailers (grocery stores, markets, cafes). The platform facilitates discovery, ordering, and logistics coordination between producers and retailers.
 
 ## Tech Stack
 

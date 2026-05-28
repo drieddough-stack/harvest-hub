@@ -1,5 +1,5 @@
 /**
- * Database wrapper for LocalConnect.
+ * Database wrapper for Harvest Hub.
  * Uses team-db CLI to execute SQL against Turso-synced SQLite.
  *
  * IMPORTANT: Every call does pull -> execute -> push.

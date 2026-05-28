@@ -1,5 +1,5 @@
 {
-  "name": "localconnect-server",
+  "name": "harvest-hub-server",
   "version": "1.0.0",
   "description": "LocalConnect backend API server",
   "main": "src/index.js",
