@@ -1,40 +1,49 @@
 /**
  * Database wrapper for Harvest Hub.
- * Uses team-db CLI to execute SQL against Turso-synced SQLite.
- *
- * IMPORTANT: Every call does pull -> execute -> push.
- * Do NOT use sqlite3 directly -- only this module talks to the database.
+ * Uses better-sqlite3 for standalone SQLite.
  */
 
-const { execSync } = require('child_process');
-const fs = require('fs');
+const Database = require('better-sqlite3');
 const path = require('path');
+const fs = require('fs');
 
-const TMP_DIR = '/tmp';
+const DB_PATH = process.env.DB_PATH || path.join(__dirname, '..', 'data', 'harvest-hub.db');
+
+let db;
+
+function getDb() {
+  if (!db) {
+    const dir = path.dirname(DB_PATH);
+    if (!fs.existsSync(dir)) {
+      fs.mkdirSync(dir, { recursive: true });
+    }
+    db = new Database(DB_PATH);
+    db.pragma('journal_mode = WAL');
+    db.pragma('foreign_keys = ON');
+  }
+  return db;
+}
 
 /**
- * Execute a single SQL statement via team-db CLI.
- * Uses a temp file to avoid shell quoting issues.
+ * Execute a single SQL statement.
  * @param {string} sql - A single SQL statement
  * @returns {Array|null} Parsed JSON result array, or null on error
  */
 function query(sql) {
-  const tmpFile = path.join(TMP_DIR, 'db-' + Date.now() + '-' + Math.random().toString(36).slice(2) + '.sql');
   try {
-    fs.writeFileSync(tmpFile, sql, 'utf-8');
-    const out = execSync('team-db "$(cat ' + tmpFile + ')"', {
-      encoding: 'utf-8',
-      timeout: 15000,
-      maxBuffer: 1024 * 1024,
-    });
-    const trimmed = out.trim();
-    if (!trimmed) return null;
-    return JSON.parse(trimmed);
+    const d = getDb();
+    const trimmed = sql.trim();
+    
+    if (trimmed.toUpperCase().startsWith('SELECT') || trimmed.toUpperCase().startsWith('WITH') || trimmed.toUpperCase().startsWith('PRAGMA')) {
+      const rows = d.prepare(trimmed).all();
+      return rows && rows.length > 0 ? rows : null;
+    } else {
+      d.prepare(trimmed).run();
+      return null;
+    }
   } catch (err) {
     console.error('DB query error:', err.message);
     throw new Error('Database error: ' + err.message);
-  } finally {
-    try { fs.unlinkSync(tmpFile); } catch (_) { /* ignore */ }
   }
 }
 
