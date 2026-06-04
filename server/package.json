@@ -4,13 +4,7 @@
   "description": "Harvest Hub — A matchmaking platform connecting local producers with retailers",
   "main": "src/index.js",
   "scripts": {
-    "start": "node src/index.js",
-    "dev": "node --watch src/index.js",
-    "build:client": "cd ../client && npm install && npm run build",
-    "postinstall": "npm run build:client"
-  },
-  "engines": {
-    "node": ">=18.0.0"
+    "start": "node src/index.js"
   },
   "dependencies": {
     "better-sqlite3": "^11.0.0",
